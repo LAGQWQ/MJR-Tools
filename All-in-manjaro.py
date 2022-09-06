@@ -92,6 +92,10 @@ while True:
         print('卸载已经安装的软件包  [r]') 
         shinput = input('请输入>')
         if shinput == 'd': 
+            print('-'*24)
+            print('名称:debtap')
+            print('描述:.deb转.zst工具')
+            print('-'*24)
             input('回车确定安装')
             os.system("mkdir debtap")
             os.chdir("debtap")
@@ -102,10 +106,19 @@ while True:
             os.system("sudo pacman -U debtap.pkg.tar.zst")
             print('安装完毕')
         elif shinput == 'w':
+            print('-'*24)
+            print('名称:wine')
+            print('描述:在Manjaro上运行Windows')
+            print('-'*24)
             input('回车确定安装')
             os.system("sudo pacman -S wine")    
             print('安装完毕')
         elif shinput == 'e':
+            print('-'*24)
+            print('名称:Edge-Stable')
+            print('描述:由美国微软公司研发的，基于Chromium的浏览器')
+            print('-'*24)
+            input('回车确定安装')
             os.system("mkdir edge-on-arch")
             os.chdir("edge-on-arch")
             os.system("wget https://aur.archlinux.org/cgit/aur.git/snapshot/microsoft-edge-stable-bin.tar.gz")
@@ -155,9 +168,16 @@ while True:
             os.system("sudo pacman -Rs debtap")
             print('完成')     
         elif shinput == 'i':
-            print('输入软件包地址')
-            debtap = input('')      
-            os.system('sudo debtap '+debtap)   
+            print('您想使用普通模式[h]还是专业模式[p]?')
+            shinput = input('请输入>')
+            if shinput == 'h':
+                print('输入软件包地址')
+                debtap = input('>')
+                os.system('sudo debtap -Q'+debtap)
+            elif shinput == 'p':
+                print('输入软件包地址')
+                debtap = input('>')
+                os.system('sudo debtap '+debtap)
     elif shinput == 'clear':
         os.system('clear')
     elif shinput == 'exit':
