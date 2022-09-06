@@ -18,6 +18,9 @@ while True:
         print('update         下载最新版')
         print('store          商店(AUR)')
         print('debtap         deb转pkg.tar.zst')
+        print('dd             U盘刻录')
+        print('ddfix          磁盘修复')
+        print('df             查看已挂载分区')
         print('exit           退出')
     elif shinput == 'mirror':
         print("自动换源[a]")
@@ -178,15 +181,41 @@ while True:
                 print('输入软件包地址')
                 debtap = input('>')
                 os.system('sudo debtap '+debtap)
+    elif shinput == 'dd':
+        shinput = input('确定要刻录吗?[y/n]')
+        if shinput == 'y':
+             print('请输入您的镜像地址')
+             ddif = input('>')
+             print('请输入您要刻录的分区。')
+             print('如果不明白 请回到主页执行df')
+             print('一般/dev/sdb /dev/sda /dev/adb是U盘分区')
+             ddof = input('>')
+             input('您确定要继续刻录吗?将会丢失所有分区和文件 继续按回车')
+             input('最后再询问您是否备份好所有文件 继续刻录会丢失所有文件! 继续按回车')
+             print('正在刻录')
+             os.system("sudo dd if=%s of=%s status=progress bs=4M" % (ddif,ddof))
+             print('刻录完毕')
+    elif shinput == 'ddfix':
+        shinput = input('确定要修复吗?修复时间较长[y/n]')
+        if shinput == 'y':
+             print('请输入要修复的分区 该分区必须被挂载')
+             print('如果不明白 请回到主页执行df')
+             print('一般/dev/sdb /dev/sda /dev/adb是U盘分区')
+             ddiof = input('>')
+             input('确定修复吗 回车继续')
+             os.system("sudo dd if=%s of=%s status=progress" % (ddiof))
+             print('刻录完毕')
     elif shinput == 'clear':
         os.system('clear')
+    elif shinput == 'df':
+        os.system('df')
     elif shinput == 'exit':
         os.system('echo 再见 | cowsay')    
         exit()
     elif shinput == 'msm':
         os.system('manjaro-settings-manager')  
     elif shinput == 'mns':
-        os.system('msm_kde_notifier --settings')     
+        os.system('msm_kde_notifier --settings')
     else:
         print("'"+shinput+"'"+' 不是可运行的命令')
  
