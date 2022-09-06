@@ -28,13 +28,16 @@ while True:
             print("请稍后")
             time.sleep(2)
             os.system("sudo pacman-mirrors -i -c China -m rank")
+            os.system("sudo pacman -Syy")
         elif shinput == 'm':
             print('您想编辑mirrorlist[m]还是pacman.conf[c]')        
             shinput = input('[m/c]>')
             if shinput == 'm':
                 os.system('micro /etc/pacman.d/mirrorlist')
+                os.system("sudo pacman -Syy")
             elif shinput == 'c':
                 os.system('micro /etc/pacman.conf')
+                os.system("sudo pacman -Syy")
         elif shinput == 'c':
             pass        
     elif shinput == 'fcitx':
@@ -53,6 +56,8 @@ while True:
             print("SDL_IM_MODULE=fcitx")
             input("复制完毕后按回车 并粘贴以上内容")
             os.system("sudo nano /etc/environment")
+            print("-"*24)
+            print('安装完毕 请注销以使用')
         elif shinput == 'n':
             pass
     elif shinput == 'branch':
@@ -94,6 +99,7 @@ while True:
             os.system("tar -zxvf debtap.tar.gz")
             os.chdir("debtap")
             os.system("makepkg")
+            os.system("sudo pacman -U debtap.pkg.tar.zst")
             print('安装完毕')
         elif shinput == 'w':
             input('回车确定安装')
@@ -106,6 +112,7 @@ while True:
             os.system("tar -zxvf microsoft-edge-stable-bin.tar.gz")
             os.chdir("microsoft-edge-stable-bin")
             os.system("makepkg") 
+            os.system("sudo pacman -U microsoft-edge-stable-bin-105.0.1343.27-1-x86_64.pkg.tar.zst")
         elif shinput == 'r':
             shinput = input('普通删除[a]还是强制删除[b]还是删除目录[c]?[a/b/c]>')
             if shinput == 'a':
@@ -136,6 +143,7 @@ while True:
             os.system("tar -zxvf debtap.tar.gz")
             os.chdir("debtap")
             os.system("makepkg")
+            os.system("sudo pacman -U debtap.pkg.tar.zst")
             print('安装完毕')
         elif shinput == 'update':
             os.system("sudo debtap -u") 
