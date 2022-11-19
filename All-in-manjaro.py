@@ -69,7 +69,7 @@ while True:
         print('testing[t]')
         print('unstable[u]')
         print('取消[c]')
-        shinput == input('[s/t/u/c]')
+        shinput = input('[s/t/u/c]>')
         if shinput == 's':
             os.system("sudo pacman-mirrors --api --set-branch stable")
             print('切换成功')
