@@ -25,5 +25,5 @@ python All-in-manjaro.py
 目前功能较少，日后会添加更多功能  
 ### 关于
 All-in-manjaro整个项目由 LAG 一个人(也就是我)完成  
-如果您愿意，可以加入QQ聊天群：821944413
+如果您愿意，可以加入QQ聊天群：821944413  
 个人博客：http://lagblog.2kool4u.net
