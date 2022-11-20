@@ -3,24 +3,104 @@ import time
 
 os.system("clear")
 print("欢迎使用All-in-manjaro")
+print("注意：如果您是第一次使用，请输入install安装完整版")
 print("Github:https://github.com/LAGQWQ/All-in-manjaro/")
 print("输入 help 查询可用功能")
 
 while True:
     shinput = input('All-in-manjaro>')
     if shinput == 'help':
+        print('install        安装/重装All-in-manjaro完整版')
+        print('tools          系统实用工具')
+        print('disk           磁盘实用工具')
         print('mirror         换源')
         print('fcitx          安装中文输入法')
         print('branch         切换分支')
-        print('msm            打开manjaro设置')
-        print('mns            打开manjaro信息设置(针对KDE)')
         print('update         下载最新版')
         print('store          商店(AUR)')
         print('debtap         deb转pkg.tar.zst')
+        print('exit           退出')
+    elif shinput == 'install':
+        print("注意：即将安装/重装All-in-manjaro完整版")
+        print("输入y安装，否则输入n")
+        shinput = input('[y/n]>')
+        if shinput == 'y':
+            os.system("clear")
+            print("准备安装")
+            print("正在检查软件包源码，如弹窗请全部勾选")
+            os.system('sudo pacman-mirrors -i -c China -m rank')
+            print("正在同步软件包")
+            time.sleep(2)
+            os.system("sudo pacman -Syy")
+            print("正在安装相关依赖")
+            time.sleep(2)
+            os.system("sudo pacman -S micro cowsay paru lolcat debtap")
+            print("正在安装all-in-manjaro-full")
+            time.sleep(2)
+            os.system('mkdir all-in-manjaro-full')
+            os.chdir('all-in-manjaro-full')
+            os.system("git clone https://ghproxy.com/https://github.com/LAGQWQ/All-in-manjaro.git")
+            print("安装完成")
+    elif shinput == 'tools':
+        print('-'*24)
+        print('系统实用工具')
+        print('-'*24)
+        print('update         检查系统更新')
+        print('htop           启动终端任务管理器')
+        print('ps             检查当前会话运行进程')
+        print('msm            打开manjaro设置')
+        print('mns            打开manjaro信息设置(针对KDE)')
+        shinput = input('tools>')
+        if shinput == 'update':
+            os.system('sudo pacman -Syyu')
+        elif shinput == 'htop':
+            os.system('htop')
+        elif shinput == 'ps':
+            os.system('ps')
+        elif shinput == 'msm':
+            os.system('manjaro-settings-manager')  
+        elif shinput == 'mns':
+            os.system('msm_kde_notifier --settings')
+    elif shinput == 'disk':
+        print('-'*24)
+        print('磁盘实用工具')
+        print('-'*24)
         print('dd             U盘刻录')
         print('ddfix          磁盘修复')
         print('df             查看已挂载分区')
-        print('exit           退出')
+        print('list           查看所有分区')
+        print('cfdisk         启动cfdisk分区工具')
+        shinput = input('disk>')
+        if shinput == 'dd':
+            shinput = input('确定要刻录吗?[y/n]')
+            if shinput == 'y':
+                print('请输入您的镜像地址')
+                ddif = input('>')
+                print('请输入您要刻录的分区。')
+                print('如果不明白 请回到主页执行df')
+                print('一般/dev/sdb /dev/sda /dev/adb是U盘分区')
+                ddof = input('>')
+                input('您确定要继续刻录吗?将会丢失所有分区和文件 继续按回车')
+                input('最后再询问您是否备份好所有文件 继续刻录会丢失所有文件! 继续按回车')
+                print('正在刻录')
+                os.system("sudo dd if=%s of=%s status=progress bs=4M"%(ddif,ddof))
+                print('刻录完毕')
+        elif shinput == 'ddfix':
+            shinput = input('确定要修复吗?修复时间较长[y/n]')
+            if shinput == 'y':
+                print('请输入要修复的分区 该分区必须被挂载')
+                print('如果不明白 请回到主页执行df')
+                print('一般/dev/sdb /dev/sda /dev/adb是U盘分区')
+                ddiof = input('>')
+                input('确定修复吗 回车继续')
+                os.system("sudo dd if=%s of=%s status=progress"%(ddiof))
+                print('刻录完毕')
+        elif shinput == 'df':
+            os.system("sudo df")
+        elif shinput == 'list':
+            os.system("sudo fdisk -l")
+        elif shinput == 'cfdisk':
+            os.system("sudo cfdisk")
     elif shinput == 'mirror':
         print("自动换源[a]")
         print("手动换源[m]")
