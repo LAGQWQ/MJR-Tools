@@ -13,6 +13,7 @@ while True:
         print('install        安装/重装All-in-manjaro完整版')
         print('tools          系统实用工具')
         print('disk           磁盘实用工具')
+        print('bluetooth      蓝牙实用工具')
         print('mirror         换源')
         print('fcitx          安装中文输入法')
         print('branch         切换分支')
@@ -41,6 +42,28 @@ while True:
             os.chdir('all-in-manjaro-full')
             os.system("git clone https://ghproxy.com/https://github.com/LAGQWQ/All-in-manjaro.git")
             print("安装完成")
+    elif shinput == 'bluetooth':
+        print("-"*24)
+        print("蓝牙工具箱")
+        print("-"*24)
+        print('install        安装蓝牙服务')
+        print('start          启动蓝牙服务')
+        print('unlock         解除蓝牙锁')
+        print('bluetoothctl   启动蓝牙控制台')
+        shinput = input('bluetooth>')
+        if shinput == 'install':
+            print("确定安装吗[y/n]")
+            if shinput == 'y':
+                shinput = input('tools>')
+                os.system("sudo pacman -S bluez bluez-tools rfkill blueman bluedevil pulseaudio-bluetooth")
+        elif shinput == 'start':
+            os.system('sudo systemctl start bluetooth.service')
+            os.system('sudo systemctl start bluetooth.service')
+        elif shinput == 'unlock':
+            os.system('sudo rfkill unblock bluetooth')
+            print("蓝牙锁已解除")
+        elif shinput == 'bluetoothctl':
+            os.system('bluetoothctl')
     elif shinput == 'tools':
         print('-'*24)
         print('系统实用工具')
