@@ -3,7 +3,6 @@ import time
 
 os.system("clear")
 print("欢迎使用All-in-manjaro")
-print("Manjaro用户的家")
 print("Github:https://github.com/LAGQWQ/All-in-manjaro/")
 print("输入 help 查询可用功能")
 
@@ -88,10 +87,13 @@ while True:
             time.sleep(1)
             os.system('git clone https://github.com/LAGQWQ/All-in-manjaro.git')  
     elif shinput == 'store':
-        print('当前收录的软件包') 
+        print('-'*24)
         print('Edge Stable        [e]')     
         print('wine               [w]')
-        print('debtap             [d]') 
+        print('debtap             [d]')
+        print('icalingua++        [i]')
+        print('neofetch           [n]')
+        print('安装本地软件包       [l]')
         print('卸载已经安装的软件包  [r]') 
         shinput = input('请输入>')
         if shinput == 'd': 
@@ -106,8 +108,8 @@ while True:
             os.system("tar -zxvf debtap.tar.gz")
             os.chdir("debtap")
             os.system("makepkg")
-            os.system("sudo pacman -U debtap.pkg.tar.zst")
-            print('安装完毕')
+            print("编译成功")
+            print('由于部分原因，自动安装软件包已失效。请手动安装软件包')
         elif shinput == 'w':
             print('-'*24)
             print('名称:wine')
@@ -128,7 +130,37 @@ while True:
             os.system("tar -zxvf microsoft-edge-stable-bin.tar.gz")
             os.chdir("microsoft-edge-stable-bin")
             os.system("makepkg") 
-            os.system("sudo pacman -U microsoft-edge-stable-bin-105.0.1343.27-1-x86_64.pkg.tar.zst")
+            print("编译成功")
+            print('由于部分原因，自动安装软件包已失效。请手动安装软件包')
+        elif shinput == 'i':
+            print('-'*24)
+            print('名称:icalingua++')
+            print('描述:Linux QQ的替代品')
+            print('-'*24)
+            input('回车确定安装')
+            print('您是想要从Github直接下载[g]还是加速下载[p]？')
+            print('由于网络特殊性，部分用户可能无法下载或过慢，推荐使用加速下载')
+            shinput = input('[g/p]>')
+            if shinput == 'g':
+                os.system('wget https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v2.7.7/icalingua++-2.7.7-2-x86_64.pkg.tar.zst')
+                os.system('sudo pacman -U icalingua++-2.7.7-2-x86_64.pkg.tar.zst')
+                print('安装完毕')
+            elif shinput == 'p':
+                os.system('wget https://ghproxy.com/https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v2.7.7/icalingua++-2.7.7-2-x86_64.pkg.tar.zst')
+                os.system('sudo pacman -U icalingua++-2.7.7-2-x86_64.pkg.tar.zst')
+                print('安装完毕')
+        elif shinput == 'n':
+            print('-'*24)
+            print('名称:neofetch')
+            print('描述:查看电脑信息')
+            print('-'*24)
+            input('回车确定安装')
+            os.system("sudo pacman -S neofetch")    
+            print('安装完毕')
+        elif shinput == 'l':
+            local = input("输入路径>")
+            os.system('sudo pacman -U '+local)
+            print("安装完毕")
         elif shinput == 'r':
             shinput = input('普通删除[a]还是强制删除[b]还是删除目录[c]?[a/b/c]>')
             if shinput == 'a':
@@ -136,6 +168,7 @@ while True:
                 remove = input("")
                 os.system("sudo pacman -R "+remove)
             elif shinput == 'b':
+                print('警告：强制删除是危险行为')
                 print("输入你要删除的软件")
                 removesc = input("sudo pacman -Rsc "+removesc)
                 os.system(""+removesc)   
@@ -171,12 +204,12 @@ while True:
             os.system("sudo pacman -Rs debtap")
             print('完成')     
         elif shinput == 'i':
-            print('您想使用普通模式[h]还是专业模式[p]?')
+            print('您想使用静默模式[q]还是普通模式[p]?(推荐使用静默模式)')
             shinput = input('请输入>')
-            if shinput == 'h':
+            if shinput == 'q':
                 print('输入软件包地址')
                 debtap = input('>')
-                os.system('sudo debtap -Q'+debtap)
+                os.system('sudo debtap -Q '+debtap)
             elif shinput == 'p':
                 print('输入软件包地址')
                 debtap = input('>')
@@ -193,7 +226,7 @@ while True:
              input('您确定要继续刻录吗?将会丢失所有分区和文件 继续按回车')
              input('最后再询问您是否备份好所有文件 继续刻录会丢失所有文件! 继续按回车')
              print('正在刻录')
-             os.system("sudo dd if=%s of=%s status=progress bs=4M" % (ddif,ddof))
+             os.system("sudo dd if=%s of=%s status=progress bs=4M"%(ddif,ddof))
              print('刻录完毕')
     elif shinput == 'ddfix':
         shinput = input('确定要修复吗?修复时间较长[y/n]')
@@ -203,7 +236,7 @@ while True:
              print('一般/dev/sdb /dev/sda /dev/adb是U盘分区')
              ddiof = input('>')
              input('确定修复吗 回车继续')
-             os.system("sudo dd if=%s of=%s status=progress" % (ddiof))
+             os.system("sudo dd if=%s of=%s status=progress"%(ddiof))
              print('刻录完毕')
     elif shinput == 'clear':
         os.system('clear')
