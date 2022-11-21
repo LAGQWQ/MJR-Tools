@@ -52,9 +52,8 @@ while True:
         print('bluetoothctl   启动蓝牙控制台')
         shinput = input('bluetooth>')
         if shinput == 'install':
-            print("确定安装吗[y/n]")
-            if shinput == 'y':
-                shinput = input('tools>')
+            shinput = input('确定安装?[y/n]>')
+            if shinput == 'y':s
                 os.system("sudo pacman -S bluez bluez-tools rfkill blueman bluedevil pulseaudio-bluetooth")
         elif shinput == 'start':
             os.system('sudo systemctl enable bluetooth.service')
