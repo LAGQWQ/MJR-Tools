@@ -53,11 +53,13 @@ while True:
         shinput = input('bluetooth>')
         if shinput == 'install':
             shinput = input('确定安装?[y/n]>')
-            if shinput == 'y':s
+            if shinput == 'y':
                 os.system("sudo pacman -S bluez bluez-tools rfkill blueman bluedevil pulseaudio-bluetooth")
         elif shinput == 'start':
+            print('蓝牙服务正在启动')
             os.system('sudo systemctl enable bluetooth.service')
             os.system('sudo systemctl start bluetooth.service')
+            print('蓝牙服务已启动')
         elif shinput == 'unlock':
             os.system('sudo rfkill unblock bluetooth')
             print("蓝牙锁已解除")
