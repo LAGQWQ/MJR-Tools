@@ -57,7 +57,7 @@ while True:
                 shinput = input('tools>')
                 os.system("sudo pacman -S bluez bluez-tools rfkill blueman bluedevil pulseaudio-bluetooth")
         elif shinput == 'start':
-            os.system('sudo systemctl start bluetooth.service')
+            os.system('sudo systemctl enable bluetooth.service')
             os.system('sudo systemctl start bluetooth.service')
         elif shinput == 'unlock':
             os.system('sudo rfkill unblock bluetooth')
