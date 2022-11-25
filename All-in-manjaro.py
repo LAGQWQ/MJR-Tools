@@ -2,15 +2,15 @@ import os
 import time
 
 os.system("clear")
-print("欢迎使用All-in-manjaro")
+print("欢迎使用MJR-Tools")
 print("注意：如果您是第一次使用，请输入install安装完整版")
-print("Github:https://github.com/LAGQWQ/All-in-manjaro/")
+print("Github:https://github.com/LAGQWQ/MJR-Tools/")
 print("输入 help 查询可用功能")
 
 while True:
-    shinput = input('All-in-manjaro>')
+    shinput = input('MJR-Tools>')
     if shinput == 'help':
-        print('install        安装/重装All-in-manjaro完整版')
+        print('install        安装/重装MJR-Tools完整版')
         print('tools          系统实用工具')
         print('disk           磁盘实用工具')
         print('bluetooth      蓝牙实用工具')
@@ -22,7 +22,7 @@ while True:
         print('debtap         deb转pkg.tar.zst')
         print('exit           退出')
     elif shinput == 'install':
-        print("注意：即将安装/重装All-in-manjaro完整版")
+        print("注意：即将安装/重装MJR-Tools完整版")
         print("输入y安装，否则输入n")
         shinput = input('[y/n]>')
         if shinput == 'y':
@@ -36,11 +36,11 @@ while True:
             print("正在安装相关依赖")
             time.sleep(2)
             os.system("sudo pacman -S micro cowsay paru lolcat debtap")
-            print("正在安装all-in-manjaro-full")
+            print("正在安装MJR-Tools-full")
             time.sleep(2)
-            os.system('mkdir all-in-manjaro-full')
-            os.chdir('all-in-manjaro-full')
-            os.system("git clone https://ghproxy.com/https://github.com/LAGQWQ/All-in-manjaro.git")
+            os.system('mkdir MJR-Tools-full')
+            os.chdir('MJR-Tools-full')
+            os.system("git clone https://ghproxy.com/https://github.com/LAGQWQ/MJR-Tools.git")
             print("安装完成")
     elif shinput == 'bluetooth':
         print("-"*24)
@@ -189,7 +189,7 @@ while True:
         if shinput == 'y':
             print('更新...')
             time.sleep(1)
-            os.system('git clone https://github.com/LAGQWQ/All-in-manjaro.git')  
+            os.system('git clone https://github.com/LAGQWQ/MJR-Tools.git')  
     elif shinput == 'store':
         print('-'*24)
         print('Edge Stable        [e]')     
