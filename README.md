@@ -23,6 +23,6 @@ python MJR-Tools.py
 执行完以上指令后，MJR-Tools即可正常使用了。  
 目前功能较少，日后会添加更多功能  
 ## 关于
-MJR-Tools整个项目由 LAG 一个人(也就是我)完成  
+MJR-Tools整个项目由 LAG 和 SteveUbuntu 完成  
 如果您愿意，可以加入QQ聊天群：821944413  
 个人博客：http://lagsite.talk4fun.net
