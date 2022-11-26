@@ -11,7 +11,7 @@ python MJR-Tools.py
 ```
 你也可以将其压缩成一条指令  
 ```
-sudo pacman -S python && git clone https://github.com/LAGQWQ/MJR-Tools.git && cd MJR-Tools %% python MJR-Tools.py
+sudo pacman -S python && git clone https://github.com/LAGQWQ/MJR-Tools.git && cd MJR-Tools && python MJR-Tools.py
 ```
 如果以上的指令无法使用，您可以试试Ghproxy加速链接
 ```
