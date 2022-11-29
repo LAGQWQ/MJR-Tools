@@ -47,6 +47,7 @@ while True:
         print("蓝牙工具箱")
         print("-"*24)
         print('install        安装蓝牙服务')
+        print('disable        禁用蓝牙服务')
         print('start          启动蓝牙服务')
         print('unlock         解除蓝牙锁')
         print('bluetoothctl   启动蓝牙控制台')
@@ -60,6 +61,10 @@ while True:
             os.system('sudo systemctl enable bluetooth.service')
             os.system('sudo systemctl start bluetooth.service')
             print('蓝牙服务已启动')
+        elif shinput == 'start':
+            print('蓝牙服务正在禁用')
+            os.system('sudo systemctl disable bluetooth.service')
+            print('蓝牙服务已禁用')
         elif shinput == 'unlock':
             os.system('sudo rfkill unblock bluetooth')
             print("蓝牙锁已解除")
@@ -282,11 +287,11 @@ while True:
                 dele = input("")
                 os.system("sudo rm -rf"+dele)  
     elif shinput == 'debtap':
-        print("debtap首次运行需要以sudo权限更新")
+        print("debtap首次运行需要更新")
         print("install      安装/修复debtap")
-        print("update       以sudo权限更新debtap")    
+        print("update       更新debtap")    
         print("remove       卸载debtap")
-        print("i            以sudo权限启动")
+        print("start        启动debtap")
         shinput = input('debtap>')
         if shinput == 'install':
             input('回车以继续')
@@ -307,7 +312,7 @@ while True:
             time.sleep(2)
             os.system("sudo pacman -Rs debtap")
             print('完成')     
-        elif shinput == 'i':
+        elif shinput == 'start':
             print('您想使用静默模式[q]还是普通模式[p]?(推荐使用静默模式)')
             shinput = input('请输入>')
             if shinput == 'q':
