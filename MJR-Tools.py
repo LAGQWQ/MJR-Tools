@@ -7,10 +7,6 @@ print("注意：如果您是第一次使用，请输入install安装完整版")
 print("Github:https://github.com/LAGQWQ/MJR-Tools/")
 print("输入 help 查询可用功能")
 
-import os
-if os.geteuid() != 0:
-    print('不建议在root用户下运行')
-
 while True:
     shinput = input('MJR-Tools>')
     if shinput == 'help':
