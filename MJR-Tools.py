@@ -7,6 +7,10 @@ print("注意：如果您是第一次使用，请输入install安装完整版")
 print("Github:https://github.com/LAGQWQ/MJR-Tools/")
 print("输入 help 查询可用功能")
 
+import os
+if os.geteuid() != 0:
+    print('不建议在root用户下运行')
+
 while True:
     shinput = input('MJR-Tools>')
     if shinput == 'help':
@@ -14,6 +18,7 @@ while True:
         print('tools          系统实用工具')
         print('disk           磁盘实用工具')
         print('bluetooth      蓝牙实用工具')
+        print('chroot         Chroot工具')
         print('mirror         换源')
         print('fcitx          安装中文输入法')
         print('branch         切换分支')
@@ -35,13 +40,38 @@ while True:
             os.system("sudo pacman -Syy")
             print("正在安装相关依赖")
             time.sleep(2)
-            os.system("sudo pacman -S micro cowsay paru lolcat debtap")
+            os.system("sudo pacman -S micro cowsay paru lolcat")
             print("正在安装MJR-Tools-full")
             time.sleep(2)
             os.system('mkdir MJR-Tools-full')
             os.chdir('MJR-Tools-full')
             os.system("git clone https://ghproxy.com/https://github.com/LAGQWQ/MJR-Tools.git")
             print("安装完成")
+    elif shinput == 'chroot':
+        print('-'*24)
+        print("Chroot实用工具箱(Beta版)")
+        print('-'*24)
+        print('首次使用请初始化')
+        print("init          初始化chroot")
+        print('chroot        启动chroot')
+        print('newdeb        创建一个新的Debian11 Chroot环境')
+        shinput = input('chroot>')
+        if shinput == 'newdeb': 
+            print('功能实验中，可能会出现bug')
+            os.system('mkdir debian-chroot')
+            os.system('sudo debootstrap --arch amd64 bullseye debian-chroot/')
+            os.system('chroot debian-chroot/')
+        elif shinput == 'start':
+            print('输入系统路径')
+            sys = input('input>')
+            os.system('chroot '+sys)
+        elif shinput == 'init':
+            print("确定要初始化吗？")
+            shinput = input('[y/n]>')
+            if shinput == 'y':
+                os.system("sudo pacman chroot")
+            elif shinput == 'n':
+                print('用户已取消')
     elif shinput == 'bluetooth':
         print("-"*24)
         print("蓝牙工具箱")
@@ -52,7 +82,7 @@ while True:
         print('unlock         解除蓝牙锁')
         print('bluetoothctl   启动蓝牙控制台')
         shinput = input('bluetooth>')
-        if shinput == 'install':
+        if shinput == 'install': 
             shinput = input('确定安装?[y/n]>')
             if shinput == 'y':
                 os.system("sudo pacman -S bluez bluez-tools rfkill blueman bluedevil pulseaudio-bluetooth")
@@ -279,13 +309,13 @@ while True:
             elif shinput == 'b':
                 print('警告：强制删除是危险行为')
                 print("输入你要删除的软件")
-                removesc = input("sudo pacman -Rsc "+removesc)
-                os.system(""+removesc)   
+                removesc = input("input>"+removesc)
+                os.system("sudo pacman -Rsc "+removesc)   
             elif shinput == 'c':
                 print('警告：删除目录是危险行为')
                 print("输入你要删除的目录")
-                dele = input("")
-                os.system("sudo rm -rf"+dele)  
+                refolder = input("")
+                os.system("sudo rm -rf"+refolder)  
     elif shinput == 'debtap':
         print("debtap首次运行需要更新")
         print("install      安装/修复debtap")
