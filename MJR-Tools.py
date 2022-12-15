@@ -1,12 +1,18 @@
 import os
 import time
 
+if os.getuid() == 0:
+    print("不允许在ROOT用户(UID为0的用户)下运行")
+    print("请切换其他用户")
+    exit()
+
 os.system("clear")
 print("欢迎使用MJR-Tools")
 print("注意：如果您是第一次使用，请输入install安装完整版")
 print("Github:https://github.com/LAGQWQ/MJR-Tools/")
 print("输入 help 查询可用功能")
-
+print("您的用户UID：")
+print(+os.getuid())
 while True:
     shinput = input('MJR-Tools>')
     if shinput == 'help':
@@ -65,7 +71,7 @@ while True:
             print("确定要初始化吗？")
             shinput = input('[y/n]>')
             if shinput == 'y':
-                os.system("sudo pacman chroot")
+                os.system("sudo pacman -S chroot")
             elif shinput == 'n':
                 print('用户已取消')
     elif shinput == 'bluetooth':
