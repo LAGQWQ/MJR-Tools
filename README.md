@@ -24,4 +24,4 @@ python MJR-Tools.py
 目前功能较少，日后会添加更多功能  
 ## 关于
 MJR-Tools整个项目由 LAG 我一个人完成  
-个人博客：http://lagsite.ml
+个人博客：https://www.snesite.ga
